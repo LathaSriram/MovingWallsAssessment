@@ -1,0 +1,39 @@
+html{
+  background-image: url('https://www.ppt-backgrounds.net/uploads/light-blue-template-powerpoint.jpeg');
+  //background-color: #3dfff5;
+  background-size: cover;
+  body{
+    background-color: transparent !important;
+    color: #555555 !important;
+  }
+}
+.title-t-c{
+  color: #324255 !important;
+}
+.btn-custom-o{
+  color: #2b9da4 !important;
+}
+.btn-custom-o-active{
+  border-radius: 25px;
+  border-color: #21646b;
+}
+.btn-custom{
+  background: rgb(54,103,170);
+  background: linear-gradient(270deg, rgba(54,103,170,1) 0%, rgba(81,147,203,1) 100%);
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+}
+.btn-custom:hover{
+  color: #fff;
+  background-color: #2b9da4;
+}
+
+.template-card{
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}

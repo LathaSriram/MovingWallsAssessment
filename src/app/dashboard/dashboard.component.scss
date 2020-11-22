@@ -1,0 +1,27 @@
+.navbar-light{
+  background-color: transparent !important;
+  border-bottom: 1px solid #a7a7a7;
+  color: #555555;
+}
+
+.side-bar{
+  border-right: 1px solid #a8a8a8;
+  height: 100vh;
+  .list-group{
+    border-radius: 0 !important;
+  }
+  .list-group:first-child{
+    border-top: none !important;
+  }
+  .list-group-item{
+    background-color: transparent !important;
+    border-right: none !important;
+    color: #555555;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+ .li-active{
+    color: #445ab2 !important;
+   border-left: 5px solid #445ab2;
+  }
+}

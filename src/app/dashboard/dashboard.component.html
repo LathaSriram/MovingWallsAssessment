@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">MW DECISIONS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="px-3 align-self-center"><i class="fa fa-life-ring" ></i></li>
+      <li class="px-3 align-self-center"><i class="fa fa-bell-o" ></i></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Edit Profile</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="d-flex">
+  <div class="side-bar">
+    <div class="my-5" style="cursor: pointer" (click)="CollapseIt()">
+      <div class="d-flex justify-content-between" *ngIf="collapse === false">
+        <h6 class="font-weight-light  ml-2 align-self-center mb-0">ANALYZE</h6>
+        <i class="fa fa-close align-self-center mr-2"></i>
+      </div>
+      <div class="d-flex justify-content-between" *ngIf="collapse === true">
+        <i class="fa fa-bars text-center w-100"></i>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item li-active"> <i class="fa fa-dot-circle-o " ></i> <span *ngIf="collapse === false"> Select Campaign </span></li>
+      <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Campaign Details </span></li>
+      <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Performance Summary </span></li>
+      <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Sites </span></li>
+      <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Audience </span></li>
+      <li class="list-group-item"> <i class="fa fa-clock-o" ></i> <span *ngIf="collapse === false"> Time </span></li>
+      <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Attribution </span></li>
+      <li class="list-group-item"> <i class="fa fa-bullhorn" ></i> <span *ngIf="collapse === false"> Ads </span></li>
+    </ul>
+    
+      <button class="btn btn-custom-o-active px-3"> <i class="fa fa-pencil" ></i> <span *ngIf="collapse === false"> Get custom report </span></button>
+   
+  </div>
+  <div class="tabs w-100 px-5 py-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+
