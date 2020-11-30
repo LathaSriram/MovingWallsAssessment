@@ -5,15 +5,16 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
+      <li class="px-3 align-self-center"><i class="fa fa-th" ></i></li>
       <li class="px-3 align-self-center"><i class="fa fa-life-ring" ></i></li>
       <li class="px-3 align-self-center"><i class="fa fa-bell-o" ></i></li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Edit Profile</a>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" (click)="logoutUser();">Logout</a>
         </div>
       </li>
     </ul>
@@ -35,7 +36,7 @@
       <li class="list-group-item li-active"> <i class="fa fa-dot-circle-o " ></i> <span *ngIf="collapse === false"> Select Campaign </span></li>
       <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Campaign Details </span></li>
       <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Performance Summary </span></li>
-      <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Sites </span></li>
+      <li class="list-group-item"> <i class="fa fa-map-marker" ></i> <span *ngIf="collapse === false"> Sites </span></li>
       <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Audience </span></li>
       <li class="list-group-item"> <i class="fa fa-clock-o" ></i> <span *ngIf="collapse === false"> Time </span></li>
       <li class="list-group-item"> <i class="fa fa-user" ></i> <span *ngIf="collapse === false"> Attribution </span></li>
@@ -44,6 +45,7 @@
     
       <button class="btn btn-custom-o-active px-3"> <i class="fa fa-pencil" ></i> <span *ngIf="collapse === false"> Get custom report </span></button>
    
+      <p><i class="fa fa-question-circle" aria-hidden="true"></i><span *ngIf="collapse === false"><b> FAQ & Knowledge base</b></span></p>
   </div>
   <div class="tabs w-100 px-5 py-3">
     <router-outlet></router-outlet>

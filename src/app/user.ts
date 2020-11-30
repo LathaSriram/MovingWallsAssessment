@@ -1,7 +1,7 @@
 export class User {
     id:number;
-    emailId:String;
-    userName:String;
+    email:String;
+    username:String;
     password:String;
     constructor(){};
     
