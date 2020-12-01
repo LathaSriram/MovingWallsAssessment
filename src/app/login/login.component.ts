@@ -40,7 +40,7 @@ msg = '';
       error => {
         console.log("response received DATA @@@"+JSON.stringify({ error }));
         console.log("exception occured");
-       this.msg="Bad credentials, please enter valid emailID and passwword"
+       this.msg="Bad credentials, please enter valid username and password"
     }
     )
   }
