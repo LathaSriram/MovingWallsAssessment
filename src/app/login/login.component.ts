@@ -31,14 +31,14 @@ msg = '';
       
       data => {
 
-      console.log("response received DATA TOKEN @@@"+data.token);
+      console.log("response received loginuser "+data.token);
 
       this.localStorageService.set('token', data.token);
 
       this._router.navigate(['/dashboard/campaign']);
     },
       error => {
-        console.log("response received DATA @@@"+JSON.stringify({ error }));
+        console.log("response received loginuser "+JSON.stringify({ error }));
         console.log("exception occured");
        this.msg="Bad credentials, please enter valid username and password"
     }

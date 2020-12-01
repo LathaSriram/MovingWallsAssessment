@@ -26,6 +26,7 @@ export class AddcampaignComponent implements OnInit {
       data => {
         console.log("Success");
         console.log("response add campaign @@@"+JSON.stringify({ data }));
+        this.alert=true; 
       },
       error => {
         console.log("response add campaign error @@@"+JSON.stringify({ error }));
@@ -33,10 +34,7 @@ export class AddcampaignComponent implements OnInit {
         this.msg=error.error;
       }
 
-
-
     )
-    this.alert=true; 
   }
   closeAlert(){
     this.alert=false;

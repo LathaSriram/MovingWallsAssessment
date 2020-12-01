@@ -18,17 +18,21 @@
     </div>
   </div>
 </div>
-  <div class="d-flex w-100 justify-content-between mt-4 pr-3 mb-2">
-    <div class="align-self-center">Name</div>
-    <div class="align-self-center">Duration</div>
-    <div class="align-self-center">Status</div>
-    </div>
-<div class="d-flex template-card w-100 justify-content-between mt-4 pr-3 mb-2" *ngFor="let l of lis|filter:search|paginate : {itemsPerPage:10 ,currentPage :p}">
+<div class="d-flex w-100 justify-content-start mt-4 pr-3 mb-2">
+    <div class="align-self-center m1-2">Name</div>
+    <div class="align-self-center mx-auto">Duration</div>
+    <div class="align-self-center mx-auto">Status</div>
+</div>
+<div class="d-flex template-card w-100 justify-content-start mt-4 pr-3 mb-2" *ngFor="let l of lis|filter:search|paginate : {itemsPerPage:10 ,currentPage :p}">
   <div class="align-self-center"><img src="assets/images/sample.jpg" height="100" width="130" style="object-fit: cover"></div>
-  <div class="align-self-center"><p class="mb-0">{{l.campaignName}}</p></div>
-  <div class="align-self-center"><p class="mb-0">{{l.duration}}</p></div>
-  <div class="align-self-center">
-    <button class="btn btn-custom-o-active px-3">{{l.status}}</button>
+  <div class="align-self-center ml-2" style="width: 300px"><p class="mb-0" style="white-space:nowrap">{{l.campaignName}}</p></div>
+  <div class="align-self-center mx-auto"><p class="mb-0 text-center">{{l.duration}}</p></div>
+  <div class="align-self-center mx-auto"><p class="mb-0 text-center">{{l.status}}</p></div>
+  <div class="align-self-center ml-auto mr-2">
+    <button class="btn btn-custom-o-active px-3" *ngIf="l.status ==='Published'" > View report</button>
+    <p class="font-weight-bold"  *ngIf="l.status === 'Processing'">Available in 2 days</p>
+    <button class="btn btn-custom-o-active px-3" *ngIf="l.status ==='Archieved'" > Download report</button>
+    <p class="font-weight-bold"  *ngIf="l.status === 'Ongoing'">Ending in 23 days</p>
   </div>
 </div>
 <pagination-controls class="mwPagination" previousLabel="<" nextLabel=">" responsive="true" (pageChange)="p= $event"></pagination-controls>

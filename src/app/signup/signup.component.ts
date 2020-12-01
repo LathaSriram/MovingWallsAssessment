@@ -27,14 +27,13 @@ export class SignupComponent implements OnInit {
   this._service.addUserFromRemote(this.user).subscribe(
     data => {
       console.log("Success");
-      
+      this.alert=true; 
     },
     error => {
+      console.log("response add campaign error @@@"+JSON.stringify({ error }));
       console.log("Exception occured");
     }
   ) 
-  this.alert=true; 
-      this.userReg.reset({})
 }
 closeAlert(){
   this.alert=false;
