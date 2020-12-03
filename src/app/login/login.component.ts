@@ -5,6 +5,7 @@ import { LoginService } from '../login.service';
 import { User } from '../user';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,10 @@ import { LocalStorageService } from '../local-storage.service';
 
 
 export class LoginComponent implements OnInit {
+  [x: string]: any;
 user= new User();
 msg = '';
-  constructor(private _service:LoginService,private _router: Router,private localStorageService: LocalStorageService) { }
+  constructor(private _service:LoginService,private _router: Router,private localStorageService: LocalStorageService,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     
@@ -24,23 +26,22 @@ msg = '';
    signUpUser(){
     this._router.navigate(['/signup']);
    }
+  loginUserPreCheckToken(){
+    this.localStorageService.remove('token')
+    this.loginUser();
+  }
   loginUser() {
-    
-    
+    this.spinner.show();
     this._service.loginUserFromRemote(this.user).subscribe( 
       
       data => {
-
-      console.log("response received loginuser "+data.token);
-
       this.localStorageService.set('token', data.token);
-
+      this.spinner.hide();
       this._router.navigate(['/dashboard/campaign']);
     },
       error => {
-        console.log("response received loginuser "+JSON.stringify({ error }));
-        console.log("exception occured");
-       this.msg="Bad credentials, please enter valid username and password"
+        console.log("exception occured in login");
+      this.msg="Bad credentials, please enter valid username and password"
     }
     )
   }

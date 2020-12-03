@@ -3,7 +3,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-campaigns',
   templateUrl: './campaigns.component.html',
@@ -14,16 +14,17 @@ export class CampaignsComponent implements OnInit {
   p= null;
   li: any;
   lis= [];
-  constructor(private _service:LoginService, private _router: Router) { }
+  constructor(private _service:LoginService, private _router: Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this._service.getCampaignDetailsFromRemote().subscribe(
       Response => {
-        console.log("return response  ___"+JSON.stringify({Response}));
+        this.spinner.hide();
         this.lis=Response;
       },
       error => {
-        console.log("response received DATA @@@"+JSON.stringify({ error }));
+        this.spinner.hide();
         console.log("exception occured");
       }
     )

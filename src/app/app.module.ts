@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { AddcampaignComponent } from './addcampaign/addcampaign.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { SignupComponent } from './signup/signup.component';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,12 @@ import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
         HttpClientModule,
         FormsModule,
         NgxPaginationModule,
-        Ng2SearchPipeModule
+        Ng2SearchPipeModule,
+        NgxSpinnerModule,
+        BrowserAnimationsModule
     ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

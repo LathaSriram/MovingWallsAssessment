@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CampaignsComponent } from '../campaigns/campaigns.component';
 import {Campaign} from '../campaign'
 import { LoginService } from '../login.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-addcampaign',
   templateUrl: './addcampaign.component.html',
@@ -13,23 +14,22 @@ export class AddcampaignComponent implements OnInit {
   alert:boolean=false;
   campaign = new Campaign();
   msg ='';
-  constructor(private _service:LoginService, private _router :Router) { }
+  constructor(private _service:LoginService, private _router :Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
 
   addCampaign(){
-    console.log("getting method ---"+this.campaign.campaignName, this.campaign.duration);
-   
+    this.spinner.show();
     this._service.addCampaignFromRemote(this.campaign).subscribe(
       
       data => {
+        this.spinner.hide();
         console.log("Success");
-        console.log("response add campaign @@@"+JSON.stringify({ data }));
         this.alert=true; 
       },
       error => {
-        console.log("response add campaign error @@@"+JSON.stringify({ error }));
+        this.spinner.hide();
         console.log("Exception occured");
         this.msg=error.error;
       }

@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { User } from '../user';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -17,20 +17,19 @@ export class SignupComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   })
-  constructor(private _service:LoginService, private _router :Router) { }
+  constructor(private _service:LoginService, private _router :Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
  signUpUser(){
-
-  console.log("how are you---"+this.user.email,this.user.username,this.user.password);
+  this.spinner.show();
   this._service.addUserFromRemote(this.user).subscribe(
     data => {
+      this.spinner.hide();
       console.log("Success");
       this.alert=true; 
     },
     error => {
-      console.log("response add campaign error @@@"+JSON.stringify({ error }));
       console.log("Exception occured");
     }
   ) 
