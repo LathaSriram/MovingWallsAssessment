@@ -16,6 +16,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         NgxPaginationModule,
         Ng2SearchPipeModule,
         NgxSpinnerModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        BsDatepickerModule.forRoot(),
+        OrderModule
     ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }],
   bootstrap: [AppComponent],

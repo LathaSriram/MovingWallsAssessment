@@ -9,48 +9,64 @@
   <button class="btn btn-custom-o ml-2 px-3">Completed</button>
   <button class="btn btn-custom-o ml-2 px-3">Historical</button>
 </div>
-<div class="d-flex">
+<div class="d-flex form w-100 mt-4 pr-3 mb-2">
   <div Class="form-group">
-      <label for="searchcampaign">Campaign</label>
-      <p><input type="text" name="search" [(ngModel)]="search" autocomplete="off" placeholder="Search"></p>
+    <label for="search" class="label-name">{{lis.length}} Campaigns</label> 
+    <input type="text" name="search" class="fa fa-search no-outline" style="min-width: 36%" [(ngModel)]="search" autocomplete="off" placeholder="&#xF002; SEARCH">
   </div>
   <div class="form-group">
-    <label for="sel1">Filter by locations</label>
-    <select class="form-control" id="sel1">
+    <label for="sel1" style="min-width: 20%">Filter by locations</label>
+    <select class="form-control no-outline" id="sel1">
       <option>Maharahstra</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="sel1">Filter by campaign date</label>
-    <select class="form-control" id="sel1">
+    <label for="sel1" style="min-width: 10%">Filter by campaign date</label>
+    <select class="form-control no-outline" id="sel1">
       <option>Last month</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="sel1">Sort by completed first</label>
-    <select class="form-control" id="sel1">
-      <option>Last month</option>
+    <label for="sel1" style="min-width: 20%">Sort by </label>
+    <select class="form-control no-outline" id="sel1">
+      <option>Completed first</option>
     </select>
   </div>
 </div>
 <div class="d-flex w-100 justify-content-start mt-4 pr-3 mb-2">
-    <div class="align-self-center mx-auto" style="min-width: 24%">Name</div>
-    <div class="align-self-center mx-auto" style="min-width: 11%">Duration</div>
-    <div class="align-self-center mx-auto" style="min-width: 30%">Status</div>
+    <div class="align-self-center mx-auto" style="min-width: 24%" [class.active]="order === 'lis.campaignName'"
+    (click)="setOrder('lis.campaignName')">Name <span [hidden]="reverse">▼</span
+      ><span [hidden]="!reverse">▲</span></div>
+    <div class="align-self-center mx-auto" style="min-width: 11%" [class.active]="order === 'lis.duration'"
+    (click)="setOrder('lis.duration')"
+    class="mdl-data-table__cell--non-numeric">Duration <span [hidden]="reverse">▼</span
+      ><span [hidden]="!reverse">▲</span></div>
+    <div class="align-self-center mx-auto" style="min-width: 30%" [class.active]="order === 'lis.status'"
+    (click)="setOrder('lis.status')">Status <span [hidden]="reverse">▼</span
+      ><span [hidden]="!reverse">▲</span></div>
 </div>
 <div class="d-flex template-card w-100 mt-4 pr-3 mb-2" *ngFor="let l of lis|filter:search|paginate : {itemsPerPage:10 ,currentPage :p}">
   <div style="min-width: 12%"><img src="assets/images/sample.jpg" height="100" width="130" style="object-fit: cover"></div>
   <div class="align-self-center mx-auto" style="min-width: 24%"><p class="mb-0 ml-2">{{l.campaignName}}</p></div>
-  <div class="align-self-center mx-auto" style="min-width: 20%"><p class="mb-0">{{l.duration}}</p></div>
-  <div class="align-self-center mx-auto" style="min-width: 10%"><p class="mb-0">{{l.status}}</p></div>
-  <div class="align-self-center mx-auto  text-right" style="min-width: 20%">
-    <button class="btn btn-custom-o-active px-3 w-100 " *ngIf="l.status ==='Published'" > View report</button>
-    <p class="font-weight-bold"  *ngIf="l.status === 'Processing'">Available in 2 days</p>
-    <button class="btn btn-custom-o-active px-3 w-100" *ngIf="l.status ==='Archieved'" > Download report</button>
-    <p class="font-weight-bold"  *ngIf="l.status === 'Ongoing'">Ending in 23 days</p>
-  </div>
+  <div class="align-self-center mx-auto" style="min-width: 20%"><p class="mb-0">{{l.startDate|date: 'MMM d y'}} - {{l.endDate|date: 'MMM d y'}}</p></div>
+
+<div class="align-self-center mx-auto" style="min-width: 10%; color:rgb(130, 129, 141)">
+  <p *ngIf="l.status ==='Published'"><i class="fa fa-folder" [ngStyle]="{'color': 'green'} "></i> &nbsp;{{ l.status}}</p>
+  <p  *ngIf="l.status ==='Processing'"><i class="fa fa-tasks" [ngStyle]="{'color': 'yellow'} "> </i> &nbsp;{{ l.status}}</p>
+  <p *ngIf="l.status ==='Ongoing'"><i class="fa fa-clock-o" [ngStyle]="{'color': 'red'} "> </i>  &nbsp;{{ l.status}}</p>
+  <p  *ngIf="l.status ==='Archieved'"><i class="fa fa-archive" [ngStyle]="{'color': 'blue'} "> </i>&nbsp;{{ l.status}}</p>
 </div>
+  <div class="align-self-center mx-auto  text-right" style="min-width: 20%">
+   <!---- <button class="btn btn-custom-o-active px-3 w-100 " *ngIf="l.status ==='Published'" > View report</button>-->
+    <p class="span3 btn btn-custom-o-active px-3" style="width: 230px;color: rgb(43, 23, 226)" *ngIf="l.status ==='Published'" > View report  </p>
+    <p style="width: 260px;color:rgb(130, 129, 141)" *ngIf="l.status === 'Processing'">Available in 2 days</p>
+    <p class="span3 btn btn-custom-o-active px-3" style="width: 230px;color: rgb(43, 23, 226)" *ngIf="l.status ==='Archieved'" ><i class="fa fa-file-pdf-o"  style=" color: rgb(187, 13, 27)"aria-hidden="true"></i> Download report</p>
+    <p style="width: 260px" *ngIf="l.status === 'Ongoing'">Ending in 23 days</p>
+  </div>
+  <div class="align-self-center mx-auto"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+</div>
+<div class="row">
 <pagination-controls class="mwPagination" previousLabel="<" nextLabel=">" responsive="true" (pageChange)="p= $event"></pagination-controls>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-  <p style="color: white">Please Wait. </p>  
+  <p style="color: white">Please Wait. </p>    
   </ngx-spinner>

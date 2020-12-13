@@ -41,7 +41,8 @@ msg = '';
     },
       error => {
         console.log("exception occured in login");
-      this.msg="Bad credentials, please enter valid username and password"
+      this.msg="Please check the Username or Password is valid";
+      this.spinner.hide();
     }
     )
   }

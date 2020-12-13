@@ -8,16 +8,46 @@
 <h2 class="textual">Add new campaign</h2>
     <form #AddCampaignForm="ngForm" (ngSubmit)="addCampaign()">
         <div class="form-group">
-            <label for="name">Campain Name:</label>
-            <input type="text" class="form-control" placeholder="Enter Campaign name" name="campainName" [(ngModel)]="campaign.campaignName">
+            <label for="name">Campaign Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Campaign name" name="campainName" [(ngModel)]="campaign.campaignName" autocomplete="off" required #campainName="ngModel"
+            [class.is-invalid]="campainName.invalid && campainName.touched"
+            >
+            <small class="text-danger" [class.d-none]="campainName.valid || campainName.untouched">Campaign Name is required</small>
         </div>
         <div class="form-group">
             <label for="duration">Duration</label>
-            <input type="text" class="form-control" name="duration" [(ngModel)]="campaign.duration">
-        </div>
-        <div class="form-group">
+            <input id="duration"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="Choose a date range"
+                   class="form-control"
+                   bsDaterangepicker 
+                   triggers="mouseenter keydown click"
+                   name="duration"
+                   [(ngModel)]="daterange"
+                   [bsConfig]="{  rangeInputFormat : 'DD MMM',containerClass: 'theme-blue', dateInputFormat: 'DD MMM YYYY', showWeekNumbers: false }"
+                   required #duration="ngModel"
+            [class.is-invalid]="duration.invalid && duration.touched"
+            >
+            <small class="text-danger" [class.d-none]="duration.valid || duration.untouched">Duration is required</small>
+          </div>
+        <!--<div class="form-group">
+            <label for="duration">Duration</label>
+            <input type="text" class="form-control" placeholder="Enter Duration"name="duration" [(ngModel)]="campaign.duration" autocomplete="off" required>
+        </div>-->
+       <div class="form-group">
             <label for="duration">Status</label>
-            <input type="text" class="form-control" name="status" [(ngModel)]="campaign.status">
+            <select class="form-control" id="status" [(ngModel)]="campaign.status" name="status" required #status="ngModel"
+            [class.is-invalid]="status.invalid && status.touched"
+            > 
+                <option [ngValue]="undefined" disabled selected>--Please select--</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Published">Published</option>
+                <option value="Processing">Processing</option>
+                <option value="Archieved">Archieved</option>
+            </select>
+            <small class="text-danger" [class.d-none]="status.valid || status.untouched">Status is required</small>
+            <!--<input type="text" class="form-control" name="status" [(ngModel)]="campaign.status">-->
         </div>
         <button type="submit" class="btn btn-info">Add Campaign</button>
     </form>
